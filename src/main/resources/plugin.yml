@@ -1,0 +1,28 @@
+name: CallMe
+author: TriiNoxYs
+version: 0.8.0
+main: fr.triinoxys.callme.main
+commands:
+  callme:
+    description: Show CallMe infos.
+  appel:
+    description: Start a call.
+  oui:
+    description: Accept a call.
+  non:
+    description: Deny a call.
+  ajout:
+    description: Add a player to your call.
+  global:
+    description: Speak in global chat during a call.
+  raccrocher:
+    description: Leave the call.
+  fin:
+    description: Stop the call.
+  sms:
+    description: Send a SMS.
+  smslist:
+    description: See a list of your SMS.
+    aliases: [smsliste]
+  heure:
+    description: Show the real time.

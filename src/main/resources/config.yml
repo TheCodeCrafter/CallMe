@@ -1,0 +1,92 @@
+#ID of the phone item
+ID: 131
+
+
+#--------------------------------------------------------------------------------#
+
+#You can use %player% only for those messages
+INFO_FORMAT: "%prefix% %message%"
+HOUR_FORMAT: "HH:mm:ss"
+HOUR_MESSAGE: "&6&lIl est %hour%."
+
+NO_ITEM: "&cVous devez avoir un téléphone en main ! (ID:&e %id%&c)"
+
+
+#--------------------------------------------------------------------------------#
+
+
+#GUI Configuration
+#You can use %target%, %caller% and colors codes
+
+GUI:
+    
+    #Errors messages
+    USE_ADD: "&cUtilisez /ajout <joueur> pour ajouter un joueur à l'appel."
+
+    #Infos messages
+    TYPE_YES: "&aTapez /oui %caller% pour &eaccepter&a."
+    ENTER_A_MSG: "§6Entrez un message."
+    ENTER_A_NAME: "§6Entrez un nom."
+    ENTER_MULTIPLE_NAMES: "§6Entrez un ou plusieurs noms."
+
+#Call Configuration
+#You can use %target%, %caller% and colors codes
+#You can use %id% only in NO_ITEM message
+
+CALL:
+    
+    PREFIX: "&8[&6&lAppel&8]&r "
+    FORMAT: "%prefix% %sender% &6->&7 %message%"
+
+    #Errors messages
+    USE_ADD: "&cUtilisez /ajout <joueur> pour ajouter un joueur à l'appel."
+    NOT_IN_CALL: "&cVous n'êtes dans aucun appel."
+    NOT_CALL_LEADER: "&cVous ne pouvez pas ajouter de joueurs à cet appel."
+    CALLER_ALREADY_IN_CALL: "&cVous avez déjà un appel en cours !"
+    TARGET_ALREADY_IN_CALL: "&e%target%&c a déjà un appel en cours !"
+    CANT_CALL_YOURSELF: "&cVous ne pouvez pas vous apeller vous même !"
+    CANT_ADD_YOURSELF: "&cVous ne pouvez pas vous ajouter vous même !"
+    CANT_END: "&cVous devez être l'hote de l'appel pour y mettre fin."
+
+    #Infos messages
+    TYPE_YES: "&aTapez /oui %caller% pour &eaccepter&a."
+    TYPE_NO: "&aTapez /non %caller% pour &crefuser&a."
+    CALLER_SEND_CALL: "&aVous apellez&e %target%&a."
+    TARGET_RECEIVE_CALL: "&e%caller%&a vous appelle."
+    TARGET_RECEIVE_ADD: "&e%caller%&a veut vous ajouter à son appel."
+    CALLER_OFFLINE: "&c%caller% n'est pas connecté !"
+    TARGET_OFFLINE: "&c%target% n'est pas connecté !"
+    NOT_CALLED_YOU: "&c%caller% ne vous a pas appelé !"
+    TARGET_ACCEPT_CALL: "&aVous avez accepté l'appel de &e%caller%&a."
+    CALLER_ACCEPT_CALL: "&e%target%&a a accepté votre appel."
+    TARGET_DENY_CALL: "&cVous avez refusé l'appel de &e%caller%&c."
+    CALLER_DENY_CALL: "&e%target% &ca refusé votre appel."
+    CALLER_ADD_TARGET: "&aVous avez ajouté &e%target%&a à l'appel."
+    TARGET_ADD: "&aVous avez été ajouté à l'appel de &e%caller%&a."
+    QUIT_CALL: "&e%target%&a a quitté l'appel."
+    END_CALL: "&6&l%caller% a mis fin à l'appel."
+    END_CALL_CALLER: "&6&lVous avez mis fin à l'appel."
+
+
+#--------------------------------------------------------------------------------#
+
+
+#SMS Configuration
+#You can use %target%, %sender% and colors codes
+#You can use %sms% only in PRINT_LIST message
+SMS:
+
+    PREFIX: "&8[&6&lSMS&8]&r "
+    FORMAT_CALLER: "%prefix% Moi &6->&7 %target%:%message%"
+    FORMAT_TARGET: "%prefix% %sender% &6->&7 Moi:%message%"
+
+    #Errors messages
+    TARGET_OFFLINE: "&c%target% n'est pas connecté !"
+    CANT_LOAD: "&cVous n'avez jamais envoyé de SMS à &e%target%"
+    
+    #Infos messages
+    SMS_SEND: "&aVous avez envoyé un SMS à &e%target%&a !"
+    SMS_RECEIVE: "&aVous avez reçu un SMS de &e%sender&a !"
+    ANNOUNCE_LIST: "&6&lListe des sms échangés avec %target%: "
+    SMS_LIST: "&7%sms%"
+    
