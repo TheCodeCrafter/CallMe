@@ -1,5 +1,6 @@
 package fr.triinoxys.callme;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.bukkit.Bukkit;
@@ -11,7 +12,7 @@ import fr.triinoxys.callme.events.GuiEvents;
 import fr.triinoxys.callme.events.PlayerChat;
 import fr.triinoxys.callme.handlers.Channel;
 import fr.triinoxys.callme.handlers.SMSFile;
-import fr.triinoxys.callme.utils.Updater;
+import fr.triinoxys.callme.utils.UpdaterV2;
 
 public class Main extends JavaPlugin{
     
@@ -22,7 +23,7 @@ public class Main extends JavaPlugin{
     public static Main plugin;
     public static SMSFile sms;
     
-    public Updater updater = new Updater(this);
+    public UpdaterV2 updater = new UpdaterV2(this);
     
     public static ArrayList<Channel> channels = new ArrayList<Channel>();
     
@@ -32,7 +33,6 @@ public class Main extends JavaPlugin{
     public static HashMap<String, String> guiStatus = new HashMap<String, String>();
     
     public void onEnable(){
-        
         plugin = this;
         
         if(!getDataFolder().exists())
@@ -41,7 +41,11 @@ public class Main extends JavaPlugin{
         saveDefaultConfig();
         sms = new SMSFile(this);
         
-        Updater.checkUpdate(true);
+        try{
+            UpdaterV2.checkUpdate(true);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
         
         Bukkit.getPluginManager().registerEvents(new PlayerChat(), this);
         Bukkit.getPluginManager().registerEvents(new GuiEvents(), this);

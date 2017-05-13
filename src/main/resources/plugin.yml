@@ -1,7 +1,7 @@
 name: CallMe
 author: TriiNoxYs
-version: 0.8.0
-main: fr.triinoxys.callme.main
+version: 0.9.0
+main: fr.triinoxys.callme.Main
 commands:
   callme:
     description: Show CallMe infos.

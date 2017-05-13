@@ -1,5 +1,7 @@
 package fr.triinoxys.callme.commands;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import org.bukkit.command.Command;
@@ -36,8 +38,11 @@ public class MiscCmds implements CommandExecutor{
                     p.sendMessage("§a Version: §e" + plugin.getDescription().getVersion());
                     p.sendMessage("§8-------------------------");
                 }
-                else if(args[0].equalsIgnoreCase("update"))
+                else if(args[0].equalsIgnoreCase("update")) try{
                     plugin.updater.updateCommand(sender, args);
+                }catch(IOException | URISyntaxException e){
+                    e.printStackTrace();
+                }
                 else if(args[0].equalsIgnoreCase("version") || args[0].equalsIgnoreCase("ver"))
                     sender.sendMessage(plugin.getDescription().getFullName()); 
                 else sender.sendMessage("§cUsage: /" + plugin.getDescription().getName() + " <infos | version | update>");
