@@ -3,8 +3,13 @@ package fr.triinoxys.callme;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import net.md_5.bungee.api.plugin.Plugin;
+
 import fr.triinoxys.callme.commands.CallCmds;
 import fr.triinoxys.callme.commands.MiscCmds;
 import fr.triinoxys.callme.commands.SmsCmds;
@@ -14,7 +19,7 @@ import fr.triinoxys.callme.handlers.Channel;
 import fr.triinoxys.callme.handlers.SMSFile;
 import fr.triinoxys.callme.utils.UpdaterV2;
 
-public class Main extends JavaPlugin{
+public class Main extends Plugin{
     
     /*
      * @author TriiNoxYs
@@ -33,11 +38,42 @@ public class Main extends JavaPlugin{
     public static HashMap<String, String> guiStatus = new HashMap<String, String>();
     
     public void onEnable(){
-        plugin = this;
+        proxy = this.getProxy();
         
-        if(!getDataFolder().exists())
+        //Commands
+		proxy.getPluginManager().registerCommand(this, new CallCmds());
+		proxy.getPluginManager().registerCommand(this, new MiscCmds());
+		proxy.getPluginManager().registerCommand(this, new SmsCmds());
+		
+		
+		//Events
+        proxy.getPluginManager().registerListener(this, new GuiEvents());
+        proxy.getPluginManager().registerListener(this, new PlayerChat());
+        
+        //Config
+		if (!getDataFolder().exists())
             getDataFolder().mkdir();
+            
+        File configFile = new File(getDataFolder(), "config.yml");
+        if (!configFile.exists()){
+            try{
+                configFile.createNewFile();
+                try (InputStream is = getResourceAsStream("config.yml");
+                	OutputStream os = new FileOutputStream(configFile)) {
+                    ByteStreams.copy(is, os);
+                }
+            }catch (IOException e){
+            	throw new RuntimeException("Impossible de cree le fichier de configuration.", e);
+            }
+        }
+		
+		try{
+			config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
+		}catch(IOException e){
+			e.printStackTrace();
+}    
         
+        //old
         saveDefaultConfig();
         sms = new SMSFile(this);
         
@@ -47,25 +83,7 @@ public class Main extends JavaPlugin{
             e.printStackTrace();
         }
         
-        Bukkit.getPluginManager().registerEvents(new PlayerChat(), this);
-        Bukkit.getPluginManager().registerEvents(new GuiEvents(), this);
         
-        //----- CALL COMMANDS -----\\
-        getCommand("appel").setExecutor(new CallCmds());
-        getCommand("ajout").setExecutor(new CallCmds());
-        getCommand("global").setExecutor(new CallCmds());
-        getCommand("raccrocher").setExecutor(new CallCmds());
-        getCommand("oui").setExecutor(new CallCmds());
-        getCommand("non").setExecutor(new CallCmds());
-        getCommand("fin").setExecutor(new CallCmds());
-        
-        //------ SMS COMMANDS ------\\
-        getCommand("sms").setExecutor(new SmsCmds());
-        getCommand("smslist").setExecutor(new SmsCmds());
-        
-        //----- MISC COMMANDS -----\\
-        getCommand("callme").setExecutor(new MiscCmds(this));
-        getCommand("heure").setExecutor(new MiscCmds(this));
     }
     
     public void onDisable(){ 

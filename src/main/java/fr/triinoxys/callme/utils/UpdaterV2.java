@@ -9,10 +9,6 @@ import java.io.OutputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.Player;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 import fr.triinoxys.callme.Main;
@@ -48,10 +44,10 @@ public class UpdaterV2{
                 for(Player p : Bukkit.getOnlinePlayers()){
                     if(p.hasPermission(name.toLowerCase() + ".update") || p.hasPermission(name.toLowerCase() + ".*") || p.hasPermission("*") || p.isOp()){
                         p.sendMessage("");
-                        p.sendMessage("§6§l" + name + " §8§l>>> §a§lNew version available !");
-                        p.sendMessage("§6§l" + name + " §8§l>>> §a§lCurrent: §c" + currVer);
-                        p.sendMessage("§6§l" + name + " §8§l>>> §a§lUpdate:  §6" + lastVer);
-                        p.sendMessage("§6§l" + name + " §8§l>>> §a§lType §6/" + name.toLowerCase() + " update§a§l to update !");
+                        p.sendMessage("ï¿½6ï¿½l" + name + " ï¿½8ï¿½l>>> ï¿½aï¿½lNew version available !");
+                        p.sendMessage("ï¿½6ï¿½l" + name + " ï¿½8ï¿½l>>> ï¿½aï¿½lCurrent: ï¿½c" + currVer);
+                        p.sendMessage("ï¿½6ï¿½l" + name + " ï¿½8ï¿½l>>> ï¿½aï¿½lUpdate:  ï¿½6" + lastVer);
+                        p.sendMessage("ï¿½6ï¿½l" + name + " ï¿½8ï¿½l>>> ï¿½aï¿½lType ï¿½6/" + name.toLowerCase() + " updateï¿½aï¿½l to update !");
                         p.sendMessage("");
                     }
                 } 
@@ -72,7 +68,7 @@ public class UpdaterV2{
         update_path = "plugins" + File.separator + name + ".jar";
         download_adress = repo.listReleases().iterator().next().getAssets().get(0).getBrowserDownloadUrl();
         
-        sender.sendMessage("§8§lUpdating §6" + name + "§8...");
+        sender.sendMessage("ï¿½8ï¿½lUpdating ï¿½6" + name + "ï¿½8...");
         
         try{
             URL url = new URL (download_adress);
@@ -92,8 +88,8 @@ public class UpdaterV2{
             try{
                 if (in != null) in.close();
                 if (out != null) out.close();
-                sender.sendMessage("§6§l" + name + "§a has been updated !");
-                sender.sendMessage("§aYou can now restart the server.");
+                sender.sendMessage("ï¿½6ï¿½l" + name + "ï¿½a has been updated !");
+                sender.sendMessage("ï¿½aYou can now restart the server.");
             }catch(IOException ioe){
                 ioe.printStackTrace();
             }
@@ -107,11 +103,11 @@ public class UpdaterV2{
         
         if((compareVersions(currVer, lastVer) == false) && ((args.length < 2) || (!args[1].equalsIgnoreCase("-force")))){
             if(sender instanceof ConsoleCommandSender || sender.hasPermission(name.toLowerCase() + ".update") || sender.hasPermission(name.toLowerCase() + ".*") || sender.hasPermission("*") || sender.isOp()){
-                sender.sendMessage(" \n§a§l" + name + " is already updated.");
-                sender.sendMessage("§a§lCurrent version:§6 " + currVer);
-                sender.sendMessage("§a§lType §6/" + name.toLowerCase() + " update -force§a to force update !\n ");
+                sender.sendMessage(" \nï¿½aï¿½l" + name + " is already updated.");
+                sender.sendMessage("ï¿½aï¿½lCurrent version:ï¿½6 " + currVer);
+                sender.sendMessage("ï¿½aï¿½lType ï¿½6/" + name.toLowerCase() + " update -forceï¿½a to force update !\n ");
             }
-            else sender.sendMessage("§cYou don't have permission to update the plugin.");
+            else sender.sendMessage("ï¿½cYou don't have permission to update the plugin.");
         }
         else download(sender);
     }
