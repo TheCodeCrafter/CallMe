@@ -1,4 +1,4 @@
-package fr.triinoxys.callme.events;
+package net.fathomtech.plugins.CityPlus.Events;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,13 +8,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChatEvent;
-import fr.triinoxys.callme.Main;
-import fr.triinoxys.callme.utils.ChannelUtils;
-import fr.triinoxys.callme.utils.ChatUtils;
+import net.fathomtech.plugins.CityPlus.Main;
+import net.fathomtech.plugins.CityPlus.Utilities.ChannelUtils;
+import net.fathomtech.plugins.CityPlus.Utilities.ChatUtils;
 
 
 @SuppressWarnings ("deprecation")
-public class PlayerChat implements Listener{
+public class PlayerChat implements Listener {
     
     public static ArrayList<String> global = new ArrayList<String>();
     public static ArrayList<String> inGUI = new ArrayList<String>();
@@ -34,17 +34,17 @@ public class PlayerChat implements Listener{
                 Main.guiStatus.put(p.getName(), "not in GUI");
             
             switch(Main.guiStatus.get(p.getName()).toLowerCase()){
-                case "appel":
+                case "call":
                     int tour = 1;
                     for(String split : splits){
                         if(tour == 1){
-                            Bukkit.dispatchCommand(p, "appel " + split);
+                            Bukkit.dispatchCommand(p, "call " + split);
                             tour++;
                         }
-                        else Bukkit.dispatchCommand(p, "ajout " + split);
+                        else Bukkit.dispatchCommand(p, "add " + split);
                     }
                     break;
-                case "ajout":
+                case "add":
                     if(ChannelUtils.getChannel(p) != null){
                         if(ChannelUtils.isCaller(p)){
                             for(String split : splits){
@@ -55,10 +55,10 @@ public class PlayerChat implements Listener{
                     }
                     else ChatUtils.sendInfo("sms", p, Main.plugin.getConfig().getString("CALL.NOT_IN_CALL").replaceAll("%target%", splits[0]).replaceAll("%caller%", p.getName()));   
                     break;
-                case "oui":
+                case "answer":
                     Bukkit.dispatchCommand(p, "oui " + msg);
                     break;
-                case "non":
+                case "deny":
                     Bukkit.dispatchCommand(p, "non " + msg);
                     break;
                 case "global":
