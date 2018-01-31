@@ -1,23 +1,23 @@
-package fr.triinoxys.callme;
+package net.fathomtech.plugins.CityPlus;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import fr.triinoxys.callme.commands.CallCmds;
-import fr.triinoxys.callme.commands.MiscCmds;
-import fr.triinoxys.callme.commands.SmsCmds;
-import fr.triinoxys.callme.events.GuiEvents;
-import fr.triinoxys.callme.events.PlayerChat;
-import fr.triinoxys.callme.handlers.Channel;
-import fr.triinoxys.callme.handlers.SMSFile;
-import fr.triinoxys.callme.utils.UpdaterV2;
+import net.fathomtech.plugins.CityPlus.Commands.CallCommands;
+import net.fathomtech.plugins.CityPlus.Commands.MiscCmds;
+import net.fathomtech.plugins.CityPlus.Commands.SmsCmds;
+import net.fathomtech.plugins.CityPlus.Events.GuiEvents;
+import net.fathomtech.plugins.CityPlus.Events.PlayerChat;
+import net.fathomtech.plugins.CityPlus.Handlers.Channel;
+import net.fathomtech.plugins.CityPlus.Handlers.SMSFile;
+import net.fathomtech.plugins.CityPlus.Utilities.UpdaterV2;
 
-public class Main extends JavaPlugin{
+public class Main extends JavaPlugin {
     
     /*
-     * @author TriiNoxYs
+     * @author TheCodeCrafter
      */
     
     public static Main plugin;
@@ -51,13 +51,13 @@ public class Main extends JavaPlugin{
         Bukkit.getPluginManager().registerEvents(new GuiEvents(), this);
         
         //----- CALL COMMANDS -----\\
-        getCommand("appel").setExecutor(new CallCmds());
-        getCommand("ajout").setExecutor(new CallCmds());
-        getCommand("global").setExecutor(new CallCmds());
-        getCommand("raccrocher").setExecutor(new CallCmds());
-        getCommand("oui").setExecutor(new CallCmds());
-        getCommand("non").setExecutor(new CallCmds());
-        getCommand("fin").setExecutor(new CallCmds());
+        getCommand("appel").setExecutor(new CallCommands());
+        getCommand("ajout").setExecutor(new CallCommands());
+        getCommand("global").setExecutor(new CallCommands());
+        getCommand("raccrocher").setExecutor(new CallCommands());
+        getCommand("oui").setExecutor(new CallCommands());
+        getCommand("non").setExecutor(new CallCommands());
+        getCommand("fin").setExecutor(new CallCommands());
         
         //------ SMS COMMANDS ------\\
         getCommand("sms").setExecutor(new SmsCmds());
