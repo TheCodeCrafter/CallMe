@@ -1,4 +1,4 @@
-package fr.triinoxys.callme.commands;
+package net.fathomtech.plugins.CityPlus.Commands;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
