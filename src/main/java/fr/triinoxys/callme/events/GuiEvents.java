@@ -1,4 +1,4 @@
-package fr.triinoxys.callme.events;
+package net.fathomtech.plugins.CityPlus.HavenPhone;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -9,9 +9,9 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import fr.triinoxys.callme.Main;
-import fr.triinoxys.callme.handlers.GUI;
-import fr.triinoxys.callme.utils.ChatUtils;
+import net.fathomtech.plugins.CityPlus.Main;
+import net.fathomtech.plugins.CityPlus.Handlers.GUI;
+import net.fathomtech.plugins.CityPlus.Utilities.ChatUtils;
 
  
 public class GuiEvents implements Listener{
@@ -42,7 +42,7 @@ public class GuiEvents implements Listener{
     public void onInvClick(InventoryClickEvent e){
         Player p = (Player) e.getWhoClicked();
         
-        if(e.getInventory().getName().equalsIgnoreCase("§6§lTéléphone")){
+        if(e.getInventory().getName().equalsIgnoreCase("Â§6Â§liHaven")){
             e.setCancelled(true);
             
             if(e.getCurrentItem() == null) return;
@@ -50,39 +50,39 @@ public class GuiEvents implements Listener{
             if(e.getCurrentItem().getType() == Material.RECORD_11){
                 p.closeInventory();
                 PlayerChat.inGUI.add(p.getName());
-                Main.guiStatus.put(p.getName(), "appel");
+                Main.guiStatus.put(p.getName(), "call");
                 sendInfo("call", p, Main.plugin.getConfig().getString("GUI.ENTER_MULTIPLE_NAMES").replaceAll("%player%", p.getName()));
             }
             
             else if(e.getCurrentItem().getType() == Material.RECORD_12){
                 p.closeInventory();
                 PlayerChat.inGUI.add(p.getName());
-                Main.guiStatus.put(p.getName(), "ajout");
+                Main.guiStatus.put(p.getName(), "add");
                 sendInfo("call", p, Main.plugin.getConfig().getString("GUI.ENTER_MULTIPLE_NAMES").replaceAll("%player%", p.getName()));
             }
             
             else if(e.getCurrentItem().getType() == Material.RECORD_3){
                 p.closeInventory();
                 PlayerChat.inGUI.add(p.getName());
-                Main.guiStatus.put(p.getName(), "oui");
+                Main.guiStatus.put(p.getName(), "answer");
                 sendInfo("call", p, Main.plugin.getConfig().getString("GUI.ENTER_A_NAME").replaceAll("%player%", p.getName()));
             }
             
             else if(e.getCurrentItem().getType() == Material.RECORD_4){
                 p.closeInventory();
                 PlayerChat.inGUI.add(p.getName());
-                Main.guiStatus.put(p.getName(), "non");
+                Main.guiStatus.put(p.getName(), "deny");
                 sendInfo("call", p, Main.plugin.getConfig().getString("GUI.ENTER_A_NAME").replaceAll("%player%", p.getName()));
             }
             
             else if(e.getCurrentItem().getType() == Material.RECORD_5){
                 p.closeInventory();
-                Bukkit.dispatchCommand(p, "raccrocher");
+                Bukkit.dispatchCommand(p, "hangup");
             }
             
             else if(e.getCurrentItem().getType() == Material.RECORD_6){
                 p.closeInventory();
-                Bukkit.dispatchCommand(p, "fin");
+                Bukkit.dispatchCommand(p, "stopcall");
             }
             
             else if(e.getCurrentItem().getType() == Material.RECORD_7){
