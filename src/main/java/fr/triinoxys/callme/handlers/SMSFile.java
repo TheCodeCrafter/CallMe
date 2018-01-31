@@ -1,7 +1,7 @@
-package fr.triinoxys.callme.handlers;
+package net.fathomtech.plugins.CityPlus.Handlers;
 
 import org.bukkit.configuration.file.YamlConfiguration;
-import fr.triinoxys.callme.Main;
+import net.fathomtech.plugins.CityPlus.Main;
 import java.io.File;
 
 
