@@ -1,4 +1,4 @@
-package fr.triinoxys.callme.utils;
+package net.fathomtech.plugins.CityPlus.Utilities;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -15,7 +15,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
-import fr.triinoxys.callme.Main;
+import net.fathomtech.plugins.CityPlus.Main;
 
 
 public class UpdaterV2{
@@ -31,7 +31,7 @@ public class UpdaterV2{
         plugin = instance;
         name = plugin.getDescription().getName();
         try{
-            repo = GitHub.connectAnonymously().getUser("TriiNoxYs").getRepository(name);
+            repo = GitHub.connectAnonymously().getUser("TheCodeCrafter").getRepository(name);
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -48,10 +48,10 @@ public class UpdaterV2{
                 for(Player p : Bukkit.getOnlinePlayers()){
                     if(p.hasPermission(name.toLowerCase() + ".update") || p.hasPermission(name.toLowerCase() + ".*") || p.hasPermission("*") || p.isOp()){
                         p.sendMessage("");
-                        p.sendMessage("§6§l" + name + " §8§l>>> §a§lNew version available !");
-                        p.sendMessage("§6§l" + name + " §8§l>>> §a§lCurrent: §c" + currVer);
-                        p.sendMessage("§6§l" + name + " §8§l>>> §a§lUpdate:  §6" + lastVer);
-                        p.sendMessage("§6§l" + name + " §8§l>>> §a§lType §6/" + name.toLowerCase() + " update§a§l to update !");
+                        p.sendMessage("Â§6Â§l" + name + " Â§8Â§l>>> Â§aÂ§lNew version available !");
+                        p.sendMessage("Â§6Â§l" + name + " Â§8Â§l>>> Â§aÂ§lCurrent: Â§c" + currVer);
+                        p.sendMessage("Â§6Â§l" + name + " Â§8Â§l>>> Â§aÂ§lUpdate:  Â§6" + lastVer);
+                        p.sendMessage("Â§6Â§l" + name + " Â§8Â§l>>> Â§aÂ§lType Â§6/" + name.toLowerCase() + " updateÂ§aÂ§l to update !");
                         p.sendMessage("");
                     }
                 } 
@@ -72,7 +72,7 @@ public class UpdaterV2{
         update_path = "plugins" + File.separator + name + ".jar";
         download_adress = repo.listReleases().iterator().next().getAssets().get(0).getBrowserDownloadUrl();
         
-        sender.sendMessage("§8§lUpdating §6" + name + "§8...");
+        sender.sendMessage("Â§8Â§lUpdating Â§6" + name + "Â§8...");
         
         try{
             URL url = new URL (download_adress);
@@ -92,8 +92,8 @@ public class UpdaterV2{
             try{
                 if (in != null) in.close();
                 if (out != null) out.close();
-                sender.sendMessage("§6§l" + name + "§a has been updated !");
-                sender.sendMessage("§aYou can now restart the server.");
+                sender.sendMessage("Â§6Â§l" + name + "Â§a has been updated !");
+                sender.sendMessage("Â§aYou can now restart the server.");
             }catch(IOException ioe){
                 ioe.printStackTrace();
             }
@@ -107,11 +107,11 @@ public class UpdaterV2{
         
         if((compareVersions(currVer, lastVer) == false) && ((args.length < 2) || (!args[1].equalsIgnoreCase("-force")))){
             if(sender instanceof ConsoleCommandSender || sender.hasPermission(name.toLowerCase() + ".update") || sender.hasPermission(name.toLowerCase() + ".*") || sender.hasPermission("*") || sender.isOp()){
-                sender.sendMessage(" \n§a§l" + name + " is already updated.");
-                sender.sendMessage("§a§lCurrent version:§6 " + currVer);
-                sender.sendMessage("§a§lType §6/" + name.toLowerCase() + " update -force§a to force update !\n ");
+                sender.sendMessage(" \nÂ§aÂ§l" + name + " is already updated.");
+                sender.sendMessage("Â§aÂ§lCurrent version:Â§6 " + currVer);
+                sender.sendMessage("Â§aÂ§lType Â§6/" + name.toLowerCase() + " update -forceÂ§a to force update !\n ");
             }
-            else sender.sendMessage("§cYou don't have permission to update the plugin.");
+            else sender.sendMessage("Â§cYou don't have permission to update the plugin.");
         }
         else download(sender);
     }
