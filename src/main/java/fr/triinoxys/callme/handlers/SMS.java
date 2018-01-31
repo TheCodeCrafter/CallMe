@@ -1,13 +1,13 @@
-package fr.triinoxys.callme.handlers;
+package net.fathomtech.plugins.CityPlus.Handlers;
 
 import java.util.ArrayList;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import fr.triinoxys.callme.Main;
-import fr.triinoxys.callme.utils.ChatUtils;
+import net.fathomtech.plugins.CityPlus.Main;
+import net.fathomtech.plugins.CityPlus.Utilities.ChatUtils;
 
 @SuppressWarnings("unchecked")
-public class SMS{
+public class SMS {
     
     static FileConfiguration data = Main.sms.data;
     static FileConfiguration config = Main.plugin.getConfig();
@@ -57,7 +57,7 @@ public class SMS{
                         .replaceAll("%target%", t))
                         .replaceAll("%sms%", sms));
             }
-            ChatUtils.sendInfo("sms", sender, "ง7----------------------------------------");
+            ChatUtils.sendInfo("sms", sender, "ยง7----------------------------------------");
             sender.sendMessage("");
             Main.sms.data.set(s + " and " + t, list);
         }
@@ -75,7 +75,7 @@ public class SMS{
                         .replaceAll("%target%", t))
                         .replaceAll("%sms%", sms));
             }
-            ChatUtils.sendInfo("sms", sender, "ง7----------------------------------------");
+            ChatUtils.sendInfo("sms", sender, "ยง7----------------------------------------");
             sender.sendMessage("");
             Main.sms.data.set(t + " and " + s, list);
         }
