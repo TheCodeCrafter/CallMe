@@ -1,9 +1,9 @@
-package fr.triinoxys.callme.handlers;
+package net.fathomtech.plugins.CityPlus.Handlers.Channel;
 
 import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import fr.triinoxys.callme.utils.ChatUtils;
+import net.fathomtech.plugins.CityPlus.Utilities.ChatUtils;
 
 
 public class Channel{
