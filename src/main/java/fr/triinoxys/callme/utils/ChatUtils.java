@@ -1,9 +1,9 @@
-package fr.triinoxys.callme.utils;
+package net.fathomtech.plugins.CityPlus.Utilities;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import fr.triinoxys.callme.Main;
-import fr.triinoxys.callme.handlers.SMS;
+import net.fathomtech.plugins.CityPlus.Main;
+import net.fathomtech.plugins.CityPlus.Handlers.SMS;
 
 public class ChatUtils {
     
@@ -20,7 +20,7 @@ public class ChatUtils {
 	public static void sendInfo(String type, Player target, String msg){
 	    target.sendMessage((config.getString("INFO_FORMAT").replaceAll("%prefix%", type == "call" ? callPrefix : smsPrefix)
 	            .replaceAll("%message%", msg))
-	            .replaceAll("&", "ง"));
+	            .replaceAll("&", "ยง"));
 	}
 	
 	public static void sendCall(Player caller, Player target, String msg){
@@ -29,7 +29,7 @@ public class ChatUtils {
 	            .replaceAll("%message%", msg)
 	            .replaceAll("%sender%", caller.getName())
 	            .replaceAll("%target%", target.getName()))
-	            .replace('&', 'ง'));
+	            .replace('&', 'ยง'));
 	}
 	
 	public static void sendSMS(Player sender, Player target, String msg){
@@ -38,14 +38,14 @@ public class ChatUtils {
 	            .replaceAll("%message%", msg)
 	            .replaceAll("%sender%", sender.getName())
 	            .replaceAll("%target%", target.getName()))
-	            .replace('&', 'ง'));
+	            .replace('&', 'ยง'));
 	    
 	    sender.sendMessage((smsFormatCaller
                 .replaceAll("%prefix%", smsPrefix)
                 .replaceAll("%message%", msg)
                 .replaceAll("%sender%", sender.getName())
                 .replaceAll("%target%", target.getName()))
-                .replace('&', 'ง'));
+                .replace('&', 'ยง'));
 	    
 	    SMS.saveSMS(sender, target, msg);
 	}
