@@ -1,4 +1,4 @@
-package fr.triinoxys.callme.commands;
+package net.fathomtech.plugins.CityPlus.Commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -41,18 +41,18 @@ public class SmsCmds implements CommandExecutor{
                     }
                     else sendInfo("sms", p, Main.plugin.getConfig().getString("SMS.TARGET_OFFLINE").replaceAll("%target%", args[0]));
                 }
-                else sendInfo("sms", p, "§cUsage: /sms <joueur> <sms>");
+                else sendInfo("sms", p, "Â§cUsage: /sms <player> <message>");
             }
             
             else if(label.equalsIgnoreCase("smslist") || label.equalsIgnoreCase("smsliste")){
                 if(args.length >= 1){
                     SMS.loadSMS(p, args[0]);  
                 }
-                else sendInfo("sms", p, ChatColor.RED + "Usage: /smslist <joueur>");
+                else sendInfo("sms", p, ChatColor.RED + "Usage: /smslist <player>");
             } 
             return true;
         }
-        else p.sendMessage((Main.plugin.getConfig().getString("NO_ITEM").replaceAll("%id%", Main.plugin.getConfig().getString("ID").replaceAll("%player%", p.getName())).replace('&', '§')));
+        else p.sendMessage((Main.plugin.getConfig().getString("NO_ITEM").replaceAll("%id%", Main.plugin.getConfig().getString("ID").replaceAll("%player%", p.getName())).replace('&', 'Â§')));
         return false;
     }
     
