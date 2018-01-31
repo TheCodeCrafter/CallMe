@@ -23,6 +23,5 @@ commands:
     description: Send a SMS.
   smslist:
     description: See a list of your SMS.
-    aliases: [smsliste]
   hour:
     description: Show the real time.
