@@ -1,28 +1,28 @@
-name: CallMe
-author: TriiNoxYs
-version: 0.9.0
-main: fr.triinoxys.callme.Main
+name: HavenPhone
+author: TheCodeCrafter
+version: 0.1.0
+main: net.fathomtech.plugins.CityPlus.Main
 commands:
-  callme:
-    description: Show CallMe infos.
-  appel:
+  havenphone:
+    description: Show HavenPhone infos.
+  call:
     description: Start a call.
-  oui:
+  answer:
     description: Accept a call.
-  non:
+  deny:
     description: Deny a call.
-  ajout:
+  add:
     description: Add a player to your call.
   global:
     description: Speak in global chat during a call.
-  raccrocher:
+  hangup:
     description: Leave the call.
-  fin:
+  stopcall:
     description: Stop the call.
   sms:
     description: Send a SMS.
   smslist:
     description: See a list of your SMS.
     aliases: [smsliste]
-  heure:
+  hour:
     description: Show the real time.
